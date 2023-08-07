@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tiptime.ui.theme.TipTimeTheme
+import java.text.NumberFormat
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +54,7 @@ fun TipTimeLayout() {
             style = MaterialTheme.typography.displaySmall
         )
     }
-}
+}   
 
 @Preview(showBackground = true)
 @Composable
@@ -61,4 +62,9 @@ fun TipTimeLayoutPreview() {
     TipTimeTheme {
         TipTimeLayout()
     }
+}
+
+private fun calculateTip(amount: Double, tipPercent: Double = 15.0): String {
+    val tip = tipPercent / 100 * amount
+    return NumberFormat.getCurrencyInstance().format(tip)
 }
